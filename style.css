@@ -18,26 +18,54 @@
 body {
     background-color: var(--primary);
     color: var(--light);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 
 h1 {
-    color: var(--secondary);
+    color: var(--dark-alt);
     text-align: center;
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 32px;
     margin-top: 32px;
+    margin: 0 auto;
 }
 h2 {
-    color: var(--secondary);
+    color: var(--dark-alt);
     text-align: center;
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 32px;
+    margin: 0 auto;
 }
 
+
+.pwd {
+    /* display: inline-block; */
+    width: 200px;
+    height: 10px;
+    padding: 15px;
+    border: 2px solid var(--dark-alt);
+    border-radius: 4px;
+    text-align: center;
+    color: #000;
+    margin: 0 auto;
+    margin-top: 10px;
+    display: table;
+}
+
+
 input {
+    margin: 0 auto;
     align-self: center;
     border: 1px solid #a4a4a4;
     padding: 15px 20px;
@@ -47,13 +75,13 @@ input {
     background: #f8f8ff;
     color: var(--light-alt);
 
-    border: 2px solid var(--light-alt);
+    border: 2px solid var(--dark-alt);
     border-radius: 4px;   
 
     transition: width 0.4s ease-in-out;
 }
 input[type=text]:focus {
-    width: 40%;
+    width: 55%;
 }
 
 /*Glow effect for buttons*/
@@ -71,7 +99,8 @@ input[type=text]:focus {
 }
 .glow-on-hover:before {
     content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00,
+                            #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
     top: -2px;
     left:-2px;
@@ -111,7 +140,16 @@ input[type=text]:focus {
     100% { background-position: 0 0; }
 }
 
-p{
-    font-size: 30px;
-    color: yellow;
+.container {
+    margin: 40px 0;
+    width: 400px;
+    height: 400px;
+    padding: 10px 25px;
+    background: var(--light);
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.45), 0 4px 8px rgba(0, 0, 0, 0.35), 0 8px 12px rgba(0, 0, 0, 0.15);
+    font-family: "Montserrat";
   }
+
+  
