@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hash Your Password</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="http://127.0.0.1/favicon.ico" type="image/x-icon">  <script src="script.js"></script>
+
+</head>
+<body>
+  <div>
+    <h1>Hash Your Password</h1>
+    <h2>Enter Your Password</h2>
+  </div>
+  <div>
+    <center>
+      <input type="text" id="text" placeholder="Enter your password" />  
+    </center>
+  </div>
+  <div>
+    <center>
+      <button class="glow-on-hover" type="button" onclick="hashFunc()" id="btn1">Hash Password</button>
+      <button class="glow-on-hover" type="button" onclick="hashSalt()" id="btn2">Hash with Salt</button>
+    </center>
+  </div>
+  <div>
+    <p id="password"></p>
+  </div>
+</body>
+</html>
