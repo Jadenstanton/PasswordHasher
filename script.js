@@ -1,61 +1,51 @@
 function hashFunc() {
     var str = document.getElementById("password").value;
 
-    var s = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
+    var s = '!"#$%&\'()*+,-./:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
     
-    var alphabets = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z', "-", "_", ".", "&","?", "!", "@", "#", "/"];
-    var alphabets13 = ['N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M', "-", "_", ".", "&","?", "!", "@", "#", "/"];
-   
-    var newStr = [...str];
     var myHash = 0;
-    var char = str;
   
-    for(let i = 0; i<newStr.length;i++){
-        newStr[i] = char;
-        char = str.charCodeAt(0);
-        myHash = ((myHash << 5) - myHash) + char;
+    for(let i = 0; i<str.length;i++){
+        var char = str.charCodeAt(i);//get unicode of character i
+        myHash = ((myHash << 5) - myHash) + char + str.charCodeAt(i-1); //shift hash bits 5 to the left and add unicode
         myHash = myHash & myHash;
-        newStr[i] = myHash + s[i + 10 % 3 +2] ;
+        myHash |= 0;
     }
-    console.log("New string: ", newStr.join(""));
-    var hash = newStr.join("");
 
-    document.getElementById("hashedPassword").innerHTML = hash;
-    console.log("Successful: ", hash);
+    console.log("Hashed string: ", myHash);
+    document.getElementById("hashedPassword").innerHTML = myHash;
+    console.log("Successful!");
+
 }
 
 function hashSalt() {
-    var str = document.getElementById("password").value;
+    var str = document.getElementById("password").value; 
 
     const array = new Uint32Array(1);
     self.crypto.getRandomValues(array);
-
     console.log("Salt:", array[0]);
     
     var s = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
     
     var salt = array[0];
-    salt = salt.toString().split('').map(Number).map(n => (n || 10) + 64).map(c => String.fromCharCode(c)).join('');
+    salt = salt.toString().split('').slice(2,9).map(Number).map(n => (n || 10) + 64).map(c => String.fromCharCode(c)).join('').toLowerCase();
+    console.log("Salt as Chars:", salt);
 
-
-    var newStr = [...str+salt];
-    console.log("Before hash: ", newStr);
+    var saltedString = str+salt;
+    var newStr = [...saltedString];
+    console.log("String Before hash as char array: ", newStr);
 
     var myHash = 0;
-    var char = str;
-  
     for(let i = 0; i<newStr.length;i++){
-        newStr[i] = char;
-        char = str.charCodeAt(0);
-        myHash = ((myHash << 5) - myHash) + char;
+        var char = saltedString.charCodeAt(i);//get unicode of character i
+        myHash = ((myHash << 5) - myHash) + char + saltedString.charCodeAt(i-1); //shift hash bits 5 to the left and add unicode
         myHash = myHash & myHash;
-        newStr[i] = myHash + s[i + 10 % 3 +2] ;
+        myHash |= 0;//convert to 32 bit int
     }
+    myHash = Math.abs(myHash);
 
-    var hash = Array.isArray(newStr) ? newStr.join("") : "";
-    console.log("After hash: ", hash);
+    console.log("After hash: ", myHash);
 
-
-    document.getElementById("hashedPassword").innerHTML = hash;
-    console.log("Successful: ", hash);
+    document.getElementById("hashedPassword").innerHTML = myHash;
+    console.log("Successful!");
 }
