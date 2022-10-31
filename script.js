@@ -1,7 +1,5 @@
 function hashFunc() {
     var str = document.getElementById("password").value;
-
-    var s = '!"#$%&\'()*+,-./:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
     
     var myHash = 0;
   
@@ -23,9 +21,7 @@ function hashSalt() {
     const array = new Uint32Array(1);
     self.crypto.getRandomValues(array);
     console.log("Salt:", array[0]);
-    
-    var s = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
-    
+        
     var salt = array[0];
     salt = salt.toString().split('').slice(2,9).map(Number).map(n => (n || 10) + 64).map(c => String.fromCharCode(c)).join('').toLowerCase();
     console.log("Salt as Chars:", salt);
