@@ -8,7 +8,6 @@ function hashFunc() {
     for(let i = 0; i<str.length;i++){
         var char = str.charCodeAt(i);//get unicode of character i
         myHash = ((myHash << 5) - myHash) + char + str.charCodeAt(i-1); //shift hash bits 5 to the left and add unicode
-        myHash = myHash & myHash;
         myHash |= 0;
     }
 
@@ -39,7 +38,6 @@ function hashSalt() {
     for(let i = 0; i<newStr.length;i++){
         var char = saltedString.charCodeAt(i);//get unicode of character i
         myHash = ((myHash << 5) - myHash) + char + saltedString.charCodeAt(i-1); //shift hash bits 5 to the left and add unicode
-        myHash = myHash & myHash;
         myHash |= 0;//convert to 32 bit int
     }
     myHash = Math.abs(myHash);
